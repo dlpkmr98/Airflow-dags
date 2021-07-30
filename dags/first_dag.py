@@ -1,4 +1,7 @@
 
+from airflow.operators.python import task
+
+
 try:
 
     from datetime import timedelta
@@ -24,6 +27,7 @@ def first_function_execute(**context):
 
 def second_function_execute(**context):
     instance = context.get("ti").xcom_pull(key="mykey")
+   # instance = context.get("ti").xcom_pull(key="mykey",task_ids = "first_function_execute")
     data = [{"name": "Dilip", "title": "Full Stack Software Engineer"}, {
         "name": "Nishanth", "title": "Full Stack Software Engineer"}, ]
     df = pd.DataFrame(data=data)
