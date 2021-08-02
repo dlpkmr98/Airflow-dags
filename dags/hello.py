@@ -2,7 +2,7 @@ try:
 
     from datetime import timedelta
     from airflow import DAG
-    from airflow.operators.python_operator import PythonOperator
+    from airflow.operators.python_operator import PythonOperator,BashOperator
     from datetime import datetime
     import pandas as pd
 
@@ -37,3 +37,9 @@ function1 = PythonOperator(
     python_callable=function1,
     dag=dag
 )
+
+#Use the BashOperator to execute bash command
+t1 = BashOperator(
+    task_id='task_1',
+    bash_command='echo "Hello World from Task 1"',
+    dag=dag)
